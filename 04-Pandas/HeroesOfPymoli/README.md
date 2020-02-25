@@ -72,4 +72,4 @@ As final considerations:
 * You must use the Pandas Library and the Jupyter Notebook.
 * You must submit a link to your Jupyter Notebook with the viewable Data Frames.
 * You must include a written description of three observable trends based on the data.
-* See [Example Solution](HeroesOfPymoli/HeroesOfPymoli_starter.ipynb) for a reference on expected format.
+* See [Example Solution](HeroesOfPymoli_starter.ipynb) for a reference on expected format.
