@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.9.1" last-position="0,0" last-zoom="1"
+	 default-schema="public" default-owner="postgres">
+<database name="employee_db" is-template="false" allow-conns="true">
+</database>
+
+<schema name="public" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<schema name="employee_db" rect-visible="true" fill-color="#e1e1e1">
+	<role name="postgres"/>
+</schema>
+
+<table name="employees" hide-ext-attribs="true">
+	<schema name="employee_db"/>
+	<role name="postgres"/>
+	<position x="40" y="100"/>
+	<column name="emp_no" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="birth_date">
+		<type name="date" length="0"/>
+	</column>
+	<column name="first_name" not-null="true">
+		<type name="varchar" length="32"/>
+	</column>
+	<column name="last_name" not-null="true">
+		<type name="varchar" length="32"/>
+	</column>
+	<column name="gender">
+		<type name="varchar" length="1"/>
+	</column>
+	<column name="hire_date">
+		<type name="date" length="0"/>
+	</column>
+	<constraint name="employee_pk" type="pk-constr" table="employee_db.employees">
+		<columns names="emp_no" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="titles" hide-ext-attribs="true">
+	<schema name="employee_db"/>
+	<role name="postgres"/>
+	<position x="600" y="40"/>
+	<column name="emp_no" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="title" not-null="true">
+		<type name="varchar" length="32"/>
+	</column>
+	<column name="from_date">
+		<type name="date" length="0"/>
+	</column>
+	<column name="to_date">
+		<type name="date" length="0"/>
+	</column>
+</table>
+
+<table name="salaries" hide-ext-attribs="true">
+	<schema name="employee_db"/>
+	<role name="postgres"/>
+	<position x="600" y="160"/>
+	<column name="emp_no" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="salary" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="from_date">
+		<type name="date" length="0"/>
+	</column>
+	<column name="to_date">
+		<type name="date" length="0"/>
+	</column>
+</table>
+
+<table name="departments" hide-ext-attribs="true">
+	<schema name="employee_db"/>
+	<role name="postgres"/>
+	<position x="40" y="360"/>
+	<column name="dept_no" not-null="true">
+		<type name="varchar" length="4"/>
+	</column>
+	<column name="dept_name" not-null="true">
+		<type name="varchar" length="32"/>
+	</column>
+	<constraint name="departments_pk" type="pk-constr" table="employee_db.departments">
+		<columns names="dept_no" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="dept_manager" hide-ext-attribs="true">
+	<schema name="employee_db"/>
+	<role name="postgres"/>
+	<position x="600" y="280"/>
+	<column name="dept_no" not-null="true">
+		<type name="varchar" length="4"/>
+	</column>
+	<column name="emp_no" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="from_date">
+		<type name="date" length="0"/>
+	</column>
+	<column name="to_date">
+		<type name="date" length="0"/>
+	</column>
+</table>
+
+<table name="dept_emp" hide-ext-attribs="true">
+	<schema name="employee_db"/>
+	<role name="postgres"/>
+	<position x="600" y="400"/>
+	<column name="emp_no" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="dept_no" not-null="true">
+		<type name="varchar" length="4"/>
+	</column>
+	<column name="from_date">
+		<type name="date" length="0"/>
+	</column>
+	<column name="to_date">
+		<type name="date" length="0"/>
+	</column>
+</table>
+
+<constraint name="emp_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="employee_db.employees" table="employee_db.titles">
+	<columns names="emp_no" ref-type="src-columns"/>
+	<columns names="emp_no" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="emp_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="employee_db.employees" table="employee_db.salaries">
+	<columns names="emp_no" ref-type="src-columns"/>
+	<columns names="emp_no" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="dept_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="employee_db.departments" table="employee_db.dept_manager">
+	<columns names="dept_no" ref-type="src-columns"/>
+	<columns names="dept_no" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="emp_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="employee_db.employees" table="employee_db.dept_manager">
+	<columns names="emp_no" ref-type="src-columns"/>
+	<columns names="emp_no" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="emp_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="employee_db.employees" table="employee_db.dept_emp">
+	<columns names="emp_no" ref-type="src-columns"/>
+	<columns names="emp_no" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="dept_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="employee_db.departments" table="employee_db.dept_emp">
+	<columns names="dept_no" ref-type="src-columns"/>
+	<columns names="dept_no" ref-type="dst-columns"/>
+</constraint>
+
+<relationship name="rel_titles_employees" type="relfk"
+	 src-table="employee_db.titles"
+	 dst-table="employee_db.employees" reference-fk="emp_fk"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
+
+<relationship name="rel_salaries_employees" type="relfk"
+	 src-table="employee_db.salaries"
+	 dst-table="employee_db.employees" reference-fk="emp_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_dept_manager_departments" type="relfk"
+	 src-table="employee_db.dept_manager"
+	 dst-table="employee_db.departments" reference-fk="dept_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_dept_manager_employees" type="relfk"
+	 src-table="employee_db.dept_manager"
+	 dst-table="employee_db.employees" reference-fk="emp_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_dept_emp_employees" type="relfk"
+	 src-table="employee_db.dept_emp"
+	 dst-table="employee_db.employees" reference-fk="emp_fk"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
+
+<relationship name="rel_dept_emp_departments" type="relfk"
+	 src-table="employee_db.dept_emp"
+	 dst-table="employee_db.departments" reference-fk="dept_fk"
+	 src-required="false" dst-required="false"/>
+
+</dbmodel>
