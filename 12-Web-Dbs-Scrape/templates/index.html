@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission to Mars</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+</head>
+    <body style="margin: 20px">
+        <div class="jumbotron text-center" style="border-radius: 6px">
+            <h1 class="display-4">Mission to Mars</h1>
+            <a class="btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a>
+        </div>
+
+        <h2>Latest Mars News</h2>
+        <h3>{{ data["news_title"] }}</h3>
+        <p>{{ data["news_p"] }}</p>
+        
+        <div class="container" style="padding: 0px; width: 100%">
+            <div class="col-md-7" style="padding: 0px">
+                <h2>Featured Mars Image</h2>
+                <img src="{{ data["featured_image_url"] }}" style="width: 100%"></img>
+            </div>
+            <div class="col-md-5" style="padding-left: 20px">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h3>Current Weather on Mars</h3>
+                        <p>{{ data["mars_weather"] }}</p>
+                    </div>
+                </div>
+                <h3>Mars Facts</h3>
+                {{ data["mars_facts_html"] | safe }}
+            </div>
+        </div>
+
+        <div class="container text-center">
+            <h2>Mars Hemispheres</h2>
+            <hr>
+            {% for image in data["hemisphere_image_urls"] %}
+            <div class="container panel-default col-md-6" style="padding: 20px;">
+                <div class="panel" style="border: 1px solid #EEEEEE; padding: 2px">
+                    <a href={{ image["Link"] }}><img src={{ image["Link"] }} style="width: 100%"></img></a>
+                    <h3>{{ image["Title"] }}</h3>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </body>
+</html>
