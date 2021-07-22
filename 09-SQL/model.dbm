@@ -97,11 +97,11 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="employee_db"/>
 	<role name="postgres"/>
 	<position x="600" y="280"/>
-	<column name="dept_no" not-null="true">
-		<type name="varchar" length="4"/>
-	</column>
 	<column name="emp_no" not-null="true">
 		<type name="integer" length="0"/>
+	</column>
+	<column name="dept_no" not-null="true">
+		<type name="varchar" length="4"/>
 	</column>
 	<column name="from_date">
 		<type name="date" length="0"/>
